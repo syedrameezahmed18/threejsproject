@@ -2,48 +2,88 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/css/uikit.min.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="style.css" rel="stylesheet">
-    <title>Animation</title>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/css/uikit.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="style.css" rel="stylesheet">
+  <title>Animation</title>
 </head>
 
 <body>
 
-    <canvas id="bg"></canvas>
+  <canvas id="bg"></canvas>
 
 
-    <div class="main" uk-scrollspy="cls: uk-animation-fade; target: .top-cont; delay: 200; repeat: true">
+  <div class="main" uk-scrollspy="cls: uk-animation-fade; target: .top-cont; delay: 500; repeat: true">
 
 
-        <div class="main-header">
-            <img src="./assets/logoreversem.png" />
-            <img src="" />
-        </div>
-
-        <div class="top-cont">
-            <div class="top-cont-inner">
-                <span class="top-cont-inner-span1">We Create Dream-</span>
-                <span class="top-cont-inner-span2">like Experiences.</span>
-            </div>
-            <div class="top-cont-inner2">
-                <p class="top-cont-inner2-p">Content that makes noise. Everlasting memories</p>
-            </div>
-            <div class="top-cont-inner3">
-                <p class="top-cont-inner3-p">
-                    We are Background Experimental. A team of experienced designers and technologists creating new
-                    ways of storytelling in saudi Arabia
-                </p>
-            </div>
-        </div>
+    <div class="main-header">
+      <img src="./assets/logoreversem.png" />
+      <img src="" />
     </div>
 
-    <!--<main>
+    <div class="top-cont">
+      <div class="top-cont-inner">
+        <span class="top-cont-inner-span1">We Create Dream-</span>
+        <span class="top-cont-inner-span2">like Experiences.</span>
+      </div>
+      <div class="top-cont-inner2">
+        <p class="top-cont-inner2-p">Content that makes noise. Everlasting memories</p>
+      </div>
+      <div class="top-cont-inner3">
+        <p class="top-cont-inner3-p">
+          We are Background Experimental. A team of experienced designers and technologists creating new
+          ways of storytelling in saudi Arabia
+        </p>
+      </div>
+    </div>
+
+    <div class="second-cont"
+      uk-scrollspy="cls: uk-animation-slide-bottom; target: .second-cont-left; delay: 300; repeat: true">
+      <div class="second-cont-left">
+        <div class="second-cont-left-spans">
+          <span class="top-cont-inner-span1" style="font-size: 52px; font-weight: 600;">We Design &</span>
+          <span class="top-cont-inner-span2" style="font-size: 52px; font-weight: 600;">Deliver</span>
+        </div>
+        <div class="second-cont-p-cont">
+          <p class="second-cont-p">Our projects integrate leading-edge technologies
+            like Virtual Reality, Augmented Reality, Projection Mapping, AI
+            & Interactive Environments to create memorable immersive
+            experiences
+          </p>
+        </div>
+      </div>
+      <div class="second-cont-right"
+        uk-scrollspy="cls: uk-animation-slide-top; target: .second-cont-right-flex; delay: 300; repeat: true">
+        <div class="second-cont-right-flex">
+          <div class="second-cont-right-inner">
+            <p>Events & Exhibitions</p>
+            <i class="fas fa-chevron-right"></i>
+          </div>
+          <div class="second-cont-right-inner">
+            <p>Museum & Cultural Attractions</p>
+            <i class="fas fa-chevron-right"></i>
+          </div>
+          <div class="second-cont-right-inner">
+            <p>Thematic/Branded Experiences</p>
+            <i class="fas fa-chevron-right"></i>
+          </div>
+          <div class="second-cont-right-inner">
+            <p>Public Spaces</p>
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--<main>
 
       <header style="visibility: hidden;">
         <h1>Jeff Delaney</h1>
@@ -115,10 +155,10 @@
 
     </main>-->
 
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/js/uikit.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/js/uikit-icons.min.js"></script>
-    <!-- <script type="module" src="/main.js"></script>-->
-    <script type="module" type="text/javascript" src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.1/dist/js/uikit-icons.min.js"></script>
+  <!-- <script type="module" src="/main.js"></script>-->
+  <script type="module" type="text/javascript" src="script.js"></script>
 
 
 </body>
