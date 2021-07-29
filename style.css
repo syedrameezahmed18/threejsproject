@@ -146,44 +146,7 @@ canvas {
    align-items: center;
  }
 
- .third-cont {
-   margin-top: 150px;
-   height: 400px;
-   width: 70%;
-   display: flex;
-   flex-direction: row;
-   justify-content: flex-end;
- }
-
- .third-cont-flex{
-   width: 45%;
-   display: flex;
-   flex-direction: column;
-   justify-content: space-between;
-   height: 300px;
- }
-
- .third-cont-top {
-   line-height: 50px;
-
- }
-
- .third-cont-middle{
-  height: 120px;
-  
-  color: rgb(172, 170, 170);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 70%;
-  margin-top: 40px;
- }
-
- .third-cont-middle p{
-  font-size: 14px;
-  line-height: 23px;
- }
-
+ 
  @keyframes colorswitch {
     0% {
       color: rgb(172, 170, 170);
@@ -207,7 +170,88 @@ canvas {
    margin: 0px;
  }
 
+ .third-cont {
+  margin-top: 150px;
+  height: 400px;
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.third-cont-flex{
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 300px;
+  padding-left: 30px;
+}
+
+
+.third-cont-top {
+  line-height: 50px;
+
+}
+
+.third-cont-middle{
+ height: 120px;
  
+ color: rgb(172, 170, 170);
+ display: flex;
+ flex-direction: column;
+ justify-content: space-around;
+ width: 70%;
+ margin-top: 40px;
+}
+
+.third-cont-middle p{
+ font-size: 14px;
+ line-height: 23px;
+}
+
+.fourth-cont {
+  margin-top: 200px;
+  height: 300px;
+  width: 70%;
+
+}
+
+.fourth-cont-inner{
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+}
+
+.fourth-cont-inner-top{
+  line-height: 50px;
+}
+
+.fourth-cont-inner-middle {
+  margin-top: 30px;
+  width: 100%;
+  color: rgb(172, 170, 170);
+  line-height: 32px;
+}
+
+.fifth-cont {
+  margin-top: 150px;
+}
+
+.item h4{
+  color: rgb(210,210,210);
+  width: 90%;
+  
+}
+
+.item p{
+  color: rgb(133, 132, 132);
+  width: 90%;
+}
+
+
 
   @media (max-width:800px) {
     .top-cont {
@@ -289,5 +333,19 @@ canvas {
       flex-direction: column;
       justify-content: space-between;
       height: 300px;
+      padding: 0;
+    }
+
+    .fourth-cont {
+      margin-top: 200px;
+      height: 300px;
+      width: 90%;
+    
+    }
+
+    .fourth-cont-inner-middle {
+      margin-top: 30px;
+      width: 100%;
+      color: rgb(172, 170, 170);
     }
   }
