@@ -7,7 +7,7 @@ const canvas = document.querySelector('#bg')
 const scene = new THREE.Scene();
 const geometry = new THREE.TorusGeometry(.7, .2, 16, 100);
 const particlesGeometry = new THREE.BufferGeometry;
-const particleCnt = 10000;
+const particleCnt = 15000;
 const loader = new THREE.TextureLoader()
 const redDot = loader.load('./assets/dotm.png')
 
@@ -22,7 +22,7 @@ particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3
 const material = new THREE.PointsMaterial({
     size: 0.01,
     map: redDot,
-    transparent:true
+    transparent: true
 })
 
 const torusMaterial = new THREE.PointsMaterial({
@@ -106,18 +106,17 @@ function animateParticles(event) {
 
 const tick = () => {
 
-    const elapsedTime = clock.getElapsedTime()
-
-    
+    const elapsedTime = clock.getDelta()
 
     // Update objects
     sphere.rotation.y = .5 * elapsedTime
-    particlesMesh.rotation.y = -.08 * elapsedTime
-    
+    particlesMesh.rotation.y += -.1 * elapsedTime
+
     console.log(`first ${particlesMesh.rotation.y}`)
     if (mouseX > 0) {
-        particlesMesh.rotation.x = -mouseY * (elapsedTime * 0.00004)
-        particlesMesh.rotation.y = -mouseX * (elapsedTime * 0.00004)
+        particlesMesh.rotation.x -= -mouseY * (elapsedTime * 0.0003)
+        particlesMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)
+        
         console.log(`second ${particlesMesh.rotation.y}`)
     }
 
