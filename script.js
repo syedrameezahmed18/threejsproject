@@ -108,9 +108,11 @@ const tick = () => {
 
     const elapsedTime = clock.getElapsedTime()
 
+    console.log(elapsedTime);
+
     // Update objects
-    sphere.rotation.y = .5 * elapsedTime
-    particlesMesh.rotation.y = -.1 * elapsedTime
+    sphere.rotation.y = .5 * 1
+    particlesMesh.rotation.y = -.1 * 1
     if (mouseX > 0) {
         particlesMesh.rotation.x = -mouseY * (elapsedTime * 0.00008)
         particlesMesh.rotation.y = -mouseX * (elapsedTime * 0.00008)
