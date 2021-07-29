@@ -108,14 +108,17 @@ const tick = () => {
 
     const elapsedTime = clock.getElapsedTime()
 
-    console.log(elapsedTime);
+    
 
     // Update objects
-    sphere.rotation.y = .5 * 1
-    particlesMesh.rotation.y = -.1 * 1
+    sphere.rotation.y = .5 * elapsedTime
+    particlesMesh.rotation.y = -.08 * elapsedTime
+    
+    console.log(`first ${particlesMesh.rotation.y}`)
     if (mouseX > 0) {
-        particlesMesh.rotation.x = -mouseY * (elapsedTime * 0.00008)
-        particlesMesh.rotation.y = -mouseX * (elapsedTime * 0.00008)
+        particlesMesh.rotation.x = -mouseY * (elapsedTime * 0.00004)
+        particlesMesh.rotation.y = -mouseX * (elapsedTime * 0.00004)
+        console.log(`second ${particlesMesh.rotation.y}`)
     }
 
     // Update Orbital Controls
