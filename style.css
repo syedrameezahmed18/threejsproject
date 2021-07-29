@@ -1,0 +1,134 @@
+/*$orange :#e25f43;
+$darkorange: rgb(198,83,59);*/
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap');
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  
+  
+:root {
+    --dark-bg: rgba(15, 15, 15, 0.95);
+    --spacing: 350px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .main {
+    font-family: 'Lato', sans-serif;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+  }
+
+  
+  .main-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 130px;
+    width: 70%;
+  }
+
+  .top-cont {
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 70%;
+    margin-top: 7%;
+  }
+
+  .top-cont-inner{
+    height: auto;
+    width: 60%;
+    line-height: 65px;
+  }
+
+  .top-cont-inner-span1 {
+    font-size: 76px;
+    font-weight: 700;
+    color: white
+  }
+
+  .top-cont-inner-span2 {
+    font-size: 76px;
+    font-weight: 700;
+    color: #e25f43;
+    
+  }
+
+  .top-cont-inner2 {
+    width: 30%;
+    height: auto;
+    
+  }
+
+  .top-cont-inner2-p {
+    color: rgb(115,115,115);
+    font-weight: 400;
+  }
+
+  .top-cont-inner3 {
+    width: 43%;
+    border-top: 1px solid rgb(198,83,59);
+    padding-top: 2%;
+    
+  }
+
+  .top-cont-inner3-p {
+    color: rgb(198,83,59);
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  @media (max-width:800px) {
+    .top-cont {
+      height: 400px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          width: 90%;
+          margin-top: 10%;
+    }
+    .top-cont-inner{
+      height: auto;
+      width: 90%;
+      line-height: 45px;
+    }
+
+    .top-cont-inner-span1 {
+      font-size: 36px;
+      font-weight: 700;
+      /*color: white;*/
+    }
+
+    .top-cont-inner-span2 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #e25f43;
+      
+    }
+
+    .top-cont-inner2 {
+      width: 60%;
+      height: auto;
+      
+    }
+
+    .top-cont-inner3 {
+      width: 73%;
+      border-top: 1px solid rgb(198,83,59);
+      padding-top: 2%;
+      
+    }
+
+  }
