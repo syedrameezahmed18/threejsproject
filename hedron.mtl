@@ -1,0 +1,7 @@
+newmtl Purple to Magenta_986960a6-ef23-4c7f-9a34-4780f1c8aca8
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd gradient60&opacityTexture.png
+newmtl Buffer Layer material_fa9aba54-3f81-4731-a69d-64d1bd7cfbbd
+Kd 0.800 0.800 0.800
+d 1.000

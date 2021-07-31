@@ -1,0 +1,7 @@
+newmtl Buffer Layer material_fa9aba54-3f81-4731-a69d-64d1bd7cfbbd
+Kd 0.800 0.800 0.800
+d 1.000
+newmtl Glass Sanding 1_940dbb09-6be6-42ee-a14b-0b74ff34a00a
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd colorTexture&opacityTexture.png
