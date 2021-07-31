@@ -16,6 +16,8 @@ canvas {
     font-family: 'Lato', sans-serif;
     font-weight: 400;
     font-style: normal;
+    cursor: none;
+    
   }
   
   .main {
@@ -351,7 +353,7 @@ canvas {
   flex-direction: row;
   justify-content: space-around;
   width: 100%;
-  background-color: black;
+  background-color: none;
 }
 
 .footer-left {
@@ -598,4 +600,43 @@ canvas {
       color: rgb(172, 170, 170);
       word-spacing: 5px;
     }
+  }
+
+
+  /*cursor css*/
+
+  .cursor {
+    width: 3rem;
+    height: 3rem;
+    border: 2px solid white;
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    pointer-events: none;
+    transition: all 0.3s ease;
+    transition-property: background,transform;
+    transform-origin: 100% 100%;
+    
+  }
+
+  .link-grow {
+    transform: scale(2);
+    background: black;
+    
+  }
+
+  .opaqued-white {
+    transform: scale(2);
+  
+    background: #e25f43;
+  }
+
+  .opaqued-orange {
+    transform: scale(2);
+    background: white;
+    border: 2px solid #e25f43;
+  }
+
+  .hovered-link { 
+    color: white;
   }
