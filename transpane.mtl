@@ -1,0 +1,4 @@
+newmtl Glass Sanding_bb326d6e-ba8b-4d3a-8c72-824a1a15c9a1
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd colorTexture&opacityTexture.png

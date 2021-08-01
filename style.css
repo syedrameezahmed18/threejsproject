@@ -18,6 +18,7 @@ canvas {
     font-style: normal;
     cursor: none;
     
+    
   }
   
   .main {
@@ -28,6 +29,7 @@ canvas {
     justify-content: space-around;
     align-items: center;
     width: 100%;
+    overflow-x:hidden;
   }
 
   
