@@ -12,31 +12,41 @@ const geometry = new THREE.TorusGeometry(.7, .2, 16, 100);
 //first parameter is size 0.5 means 50% of original size
 const testGeometry = new THREE.OctahedronGeometry(0.5, 0)
 const particlesGeometry = new THREE.BufferGeometry;
+const bloodGeometry = new THREE.BufferGeometry;
 
 
 //loading custom png for particles
 const loader = new THREE.TextureLoader()
 const redDot = loader.load('./assets/dotm.png')
 const bloodDot = loader.load('./assets/newblood.png')
+const streakDot = loader.load('./assets/streakc.png')
 
 //logic for creating randomly scattered particles
-const particleCnt = 10000;
+const particleCnt = 3000;
 const posArray = new Float32Array(particleCnt * 3);
 for (let i = 0; i < particleCnt * 3; i++) {
     posArray[i] = (Math.random() - 0.5) * 5
 }
 
+const bloodCnt = 400;
+const pArray = new Float32Array(bloodCnt * 3);
+for (let i = 0; i < bloodCnt * 3; i++) {
+    pArray[i] = (Math.random() - 0.5) * 3
+}
+
 particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3))
+bloodGeometry.setAttribute('position', new THREE.BufferAttribute(pArray,3))
+
 
 //materials for initial objects
 const material = new THREE.PointsMaterial({
     size: 0.01,
-    map: bloodDot,
+    map: streakDot,
     transparent: true
 })
 
 const bloodMaterial = new THREE.PointsMaterial({
-    size: 0.01,
+    size: 0.03,
     map: bloodDot,
     transparent: true
 })
@@ -58,10 +68,18 @@ const test = new THREE.Mesh(testGeometry, testMaterial)
 test.position.set(0,-1,0)
 const particlesMesh = new THREE.Points(particlesGeometry, material)
 
+const bloodMesh = new THREE.Points(bloodGeometry, bloodMaterial)
+
+const secondBloodMesh = new THREE.Points(bloodGeometry, bloodMaterial)
 
 
+bloodMesh.position.set(0,-50,0)
+secondBloodMesh.position.set(0,-120,0)
 //adding objects to the scene
-scene.add(particlesMesh)
+//scene.add(particlesMesh)
+scene.add(bloodMesh)
+scene.add(secondBloodMesh)
+
 
 
 //custom objects importing and code
@@ -93,7 +111,7 @@ mtlLoader.load('transpane.mtl', function(materials){
     objLoader.load('transpane.obj', function(object){
         scene.add(object);
         ourObj2 = object;
-        object.position.z -= 12;
+        object.position.z -= 8;
         object.rotation.x = 0.5;
         object.rotation.y = 100;
         object.position.y = -123;
@@ -110,10 +128,10 @@ mtlLoader.load('transpane.mtl', function(materials){
     objLoader.load('transpane.obj', function(object){
         scene.add(object);
         ourObj1 = object;
-        object.position.z -= 12;
+        object.position.z -= 8;
         object.rotation.x = 0.5;
         object.rotation.y = 100;
-        object.position.y = -51;
+        object.position.y = -53;
         object.position.x = -2;
     })
 })
@@ -164,24 +182,7 @@ var fourthLight = new THREE.PointLight( 0x340E07, 20, 1000) //bottom left
         scene.add(fourthLight);
 
 
-
-        var newlight = new THREE.PointLight( 0x340E07, 20, 1000)   //top left
-        newlight.position.set(-20 ,-39,-10);
-        scene.add(newlight);
-
-var secondnewLight = new THREE.PointLight( 0x340E07, 20, 1000) //bottom middle
-        secondnewLight.position.set(10 ,-54,-10);
-        scene.add(secondnewLight);
-
-var thirdnewLight = new THREE.PointLight( 0x340E07, 20, 1000)  //top right
-        thirdnewLight.position.set(10 ,-39,-10);
-        scene.add(thirdnewLight);
-
-var fourthnewLight = new THREE.PointLight( 0x340E07, 20, 1000) //bottom left
-        fourthnewLight.position.set(-20 ,-54,-10);
-        scene.add(fourthnewLight);
- 
-       /* const sphereSize = 1;
+        const sphereSize = 1;
         const pointLightHelper = new THREE.PointLightHelper(light, sphereSize);
         scene.add(pointLightHelper);  
         
@@ -192,7 +193,39 @@ var fourthnewLight = new THREE.PointLight( 0x340E07, 20, 1000) //bottom left
         scene.add(thirdHelper);
 
         const fourthHelper = new THREE.PointLightHelper(fourthLight, sphereSize);
-        scene.add(fourthHelper);*/
+        scene.add(fourthHelper);
+
+
+        var newlight = new THREE.PointLight( 0x340E07, 50, 1000)   //top left
+        newlight.position.set(-20 ,-41,-10);
+        scene.add(newlight);
+
+var secondnewLight = new THREE.PointLight( 0x340E07, 50, 1000) //bottom middle
+        secondnewLight.position.set(10 ,-56,-10);
+        scene.add(secondnewLight);
+
+var thirdnewLight = new THREE.PointLight( 0x340E07, 50, 1000)  //top right
+        thirdnewLight.position.set(10 ,-41,-10);
+        scene.add(thirdnewLight);
+
+var fourthnewLight = new THREE.PointLight( 0x340E07, 50, 1000) //bottom left
+        fourthnewLight.position.set(-20 ,-56,-10);
+        scene.add(fourthnewLight);
+
+        const newsphereSize = 1;
+        const newpointLightHelper = new THREE.PointLightHelper(newlight, newsphereSize);
+        scene.add(newpointLightHelper);  
+        
+        const newsecondHelper = new THREE.PointLightHelper(secondnewLight, newsphereSize);
+        scene.add(newsecondHelper);
+
+        const newthirdHelper = new THREE.PointLightHelper(thirdnewLight, newsphereSize);
+        scene.add(newthirdHelper);
+
+        const newfourthHelper = new THREE.PointLightHelper(fourthnewLight, newsphereSize);
+        scene.add(newfourthHelper);
+ 
+       
 
 /*var light = new THREE.PointLight( 0x03FE03, 40, 1000)
         light.position.set(-6 ,-51,23);
@@ -313,13 +346,20 @@ const tick = () => {
     // Update objects
     sphere.rotation.y = .5 * elapsedTime
     particlesMesh.rotation.y += -.1 * elapsedTime
+    bloodMesh.rotation.x += -.5 * elapsedTime
+    secondBloodMesh.rotation.y = -.5 * elapsedTime
     test.rotation.y += .1 * elapsedTime
 
     
     
     if (mouseX > 0) {
         particlesMesh.rotation.x -= -mouseY * (elapsedTime * 0.0003)
-        particlesMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)       
+        particlesMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)    
+        bloodMesh.rotation.x -= -mouseY * (elapsedTime * 0.0003)   
+        bloodMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)
+        secondBloodMesh.rotation.x -= -mouseY * (elapsedTime * 0.0003)   
+        secondBloodMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)
+        
     }
     
 
@@ -356,7 +396,7 @@ var render = function() {
 }
 
 // Call this to render the entire scene
-render();
+//render();
 
 
 
