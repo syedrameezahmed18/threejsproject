@@ -130,7 +130,7 @@ mtlLoader.load('transpane.mtl', function(materials){
         ourObj1 = object;
         object.position.z -= 8;
         object.rotation.x = 0.5;
-        object.rotation.y = 100;
+        object.rotation.y = 70;
         object.position.y = -53;
         object.position.x = -2;
     })
@@ -182,7 +182,7 @@ var fourthLight = new THREE.PointLight( 0x340E07, 20, 1000) //bottom left
         scene.add(fourthLight);
 
 
-        const sphereSize = 1;
+        /*const sphereSize = 1;
         const pointLightHelper = new THREE.PointLightHelper(light, sphereSize);
         scene.add(pointLightHelper);  
         
@@ -193,7 +193,7 @@ var fourthLight = new THREE.PointLight( 0x340E07, 20, 1000) //bottom left
         scene.add(thirdHelper);
 
         const fourthHelper = new THREE.PointLightHelper(fourthLight, sphereSize);
-        scene.add(fourthHelper);
+        scene.add(fourthHelper);*/
 
 
         var newlight = new THREE.PointLight( 0x340E07, 50, 1000)   //top left
@@ -212,7 +212,7 @@ var fourthnewLight = new THREE.PointLight( 0x340E07, 50, 1000) //bottom left
         fourthnewLight.position.set(-20 ,-56,-10);
         scene.add(fourthnewLight);
 
-        const newsphereSize = 1;
+      /*  const newsphereSize = 1;
         const newpointLightHelper = new THREE.PointLightHelper(newlight, newsphereSize);
         scene.add(newpointLightHelper);  
         
@@ -223,7 +223,7 @@ var fourthnewLight = new THREE.PointLight( 0x340E07, 50, 1000) //bottom left
         scene.add(newthirdHelper);
 
         const newfourthHelper = new THREE.PointLightHelper(fourthnewLight, newsphereSize);
-        scene.add(newfourthHelper);
+        scene.add(newfourthHelper);*/
  
        
 
@@ -308,14 +308,33 @@ function animateParticles(event) {
     mouseX = event.clientX
 }
 
+var lastScrollTop = 0;
+
 function moveCamera() {
+
     const t = document.body.getBoundingClientRect().top;
     test.rotation.x += 0.005;
     test.rotation.y += 0.005;
     test.rotation.z += 0.005;
-    //0.0156
+
     camera.position.y = t * 0.03;
     particlesMesh.position.y = camera.position.y
+
+    var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+    if (st > lastScrollTop){
+       ourObj1.rotation.y += 0.05
+       ourObj2.rotation.y += 0.05
+    } else {
+       ourObj1.rotation.y -= 0.05
+       ourObj2.rotation.y -= 0.05
+    }
+    lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+    
+    //0.0156
+    
+
+   
+
    // ourObj2.position.y = -0.0002 * t
 
 
@@ -333,6 +352,10 @@ function moveCamera() {
     }*/
 
 }
+
+
+
+
 
 document.body.onscroll = moveCamera
 
