@@ -1,0 +1,4 @@
+newmtl pane (1) material_5d4014e4-6582-4c73-a062-be0b7db26757
+Kd 1.000 1.000 1.000
+d 1.000
+map_Kd colorTexture&opacityTexture.png

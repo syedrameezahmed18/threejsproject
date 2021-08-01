@@ -16,7 +16,7 @@ canvas {
     font-family: 'Lato', sans-serif;
     font-weight: 400;
     font-style: normal;
-    cursor: none;
+    
     
     
   }
@@ -42,6 +42,44 @@ canvas {
     width: 70%;
   }
 
+  .vid-css {
+    position: absolute;
+    top: 200px;
+    right: 250px;
+    z-index: 0;
+  }
+
+  .vid-inner-css {
+    position: absolute;
+    top: 420px;
+    right: 470px;
+    z-index: 0;
+
+  }
+
+
+  .vid-inner-css img{
+    height: 100px;
+    width: 100px;
+  }
+
+  .vid-innest-css {
+    position: absolute;
+    top: 445px;
+    right: 490px;
+    z-index: 0;
+  }
+
+  .vid-innest-css img{
+    height: 50px;
+    width: 50px;
+  }
+
+  .vid-css img{
+    height: 500px;
+    width: 550px;
+  }
+
   .top-cont {
     height: 500px;
     display: flex;
@@ -49,6 +87,7 @@ canvas {
     justify-content: space-around;
     width: 70%;
     margin-top: 7%;
+    z-index: 1;
   }
 
   .top-cont-inner{
@@ -288,7 +327,7 @@ canvas {
 }
 
 .sixth-cont-middle {
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -608,6 +647,11 @@ canvas {
   /*cursor css*/
 
   .cursor {
+    
+    
+  }
+
+  .link-grow {
     width: 3rem;
     height: 3rem;
     border: 2px solid white;
@@ -618,23 +662,41 @@ canvas {
     transition: all 0.3s ease;
     transition-property: background,transform;
     transform-origin: 100% 100%;
-    
-  }
-
-  .link-grow {
     transform: scale(2);
     background: black;
+    cursor: none;
     
   }
 
   .opaqued-white {
+    cursor: none;
+    width: 3rem;
+    height: 3rem;
+    border: 2px solid white;
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    pointer-events: none;
+    transition: all 0.3s ease;
+    transition-property: background,transform;
+    transform-origin: 100% 100%;
     transform: scale(2);
   
     background: #e25f43;
   }
 
   .opaqued-orange {
+    width: 3rem;
+    cursor: none;
+    height: 3rem;
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    pointer-events: none;
     transform: scale(2);
+    transition: all 0.3s ease;
+    transition-property: background,transform;
+    transform-origin: 100% 100%;
     background: white;
     border: 2px solid #e25f43;
   }
@@ -643,6 +705,384 @@ canvas {
     color: white;
   }
 
-  .newh{
-    
-  }
+ /*vectors css*/
+
+ .overflowcancel{
+   overflow-y:hidden;
+ }
+
+ .vector1 {
+  position: absolute;
+  width: 100.5px;
+  height: 0px;
+  left: 0px;
+  top: 194px;
+  
+  border: 1px solid #FFFFFF;
+ }
+
+ .vector2{
+  position: absolute;
+  width: 152px;
+  height: 0px;
+  left: 0px;
+  top: 224.5px;
+  
+  border: 1px solid #EA533C;
+ }
+
+ .vector3{
+  position: absolute;
+  width: 51.5px;
+  height: 0px;
+  left: 0px;
+  top: 253.5px;
+  
+  border: 1px solid #FFFFFF;
+ }
+
+
+.vector4{
+  position: absolute;
+width: 61.49px;
+height: 0px;
+left: 96%;
+top: 194px;
+
+border: 1px solid #FFFFFF;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.vector5{
+  position: absolute;
+width: 93px;
+height: 0px;
+left: 93%;
+top: 224.5px;
+
+border: 1px solid #EA533C;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.vector6{
+  position: absolute;
+width: 31.51px;
+height: 0px;
+left: 98%;
+top: 253.5px;
+
+border: 1px solid #FFFFFF;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.vector7{
+  position: absolute;
+width: 176.54px;
+height: 0px;
+left: 0px;
+top: 1135px;
+
+border: 1px solid #FFFFFF;
+}
+
+.vector8{
+  position: absolute;
+width: 267px;
+height: 0px;
+left: 0px;
+top: 1165.5px;
+
+border: 1px solid #EA533C;
+}
+
+.vector9 {
+  position: absolute;
+width: 90.46px;
+height: 0px;
+left: 0px;
+top: 1194.5px;
+
+border: 1px solid #FFFFFF;
+}
+
+.vector10{
+  position: absolute;
+width: 218.19px;
+height: 0px;
+left: 94%;
+top: 1046px;
+
+border: 1px solid #FFFFFF;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.vector11{
+  position: absolute;
+width: 330px;
+height: 0px;
+left: 93%;
+top: 1076.5px;
+
+border: 1px solid #EA533C;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.vector12{
+  position: absolute;
+width: 111.81px;
+height: 0px;
+left: 97%;
+top: 1105.5px;
+
+border: 1px solid #FFFFFF;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.vector13{
+  position: absolute;
+width: 377.54px;
+height: 0px;
+left: 0px;
+top: 1493px;
+
+border: 1px solid #FFFFFF;
+}
+
+.vector14{
+  position: absolute;
+width: 571px;
+height: 0px;
+left: 0px;
+top: 1523.5px;
+
+border: 1px solid #EA533C;
+}
+
+.vector15{
+  position: absolute;
+width: 193.46px;
+height: 0px;
+left: 0px;
+top: 1552.5px;
+
+border: 1px solid #FFFFFF;
+}
+
+.vector16{
+  position: absolute;
+width: 214.22px;
+height: 0px;
+left: 94%;
+top: 1602px;
+
+border: 1px solid #FFFFFF;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.vector17{
+  position: absolute;
+width: 324px;
+height: 0px;
+left: 93%;
+top: 1632.5px;
+
+border: 1px solid #EA533C;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.vector18{
+  position: absolute;
+width: 109.78px;
+height: 0px;
+left: 97%;
+top: 1661.5px;
+
+border: 1px solid #FFFFFF;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.vector19{
+  position: absolute;
+width: 128.27px;
+height: 0px;
+left: 0px;
+top: 2255px;
+
+border: 1px solid #FFFFFF;
+}
+
+.vector20{
+  position: absolute;
+width: 194px;
+height: 0px;
+left: 0px;
+top: 2285.5px;
+
+border: 1px solid #EA533C;
+}
+
+.vector21{
+  position: absolute;
+width: 65.73px;
+height: 0px;
+left: 0px;
+top: 2314.5px;
+
+border: 1px solid #FFFFFF;
+}
+
+.vector22{
+  position: absolute;
+width: 214.22px;
+height: 0px;
+left: 93%;
+top: 2995px;
+
+border: 1px solid #FFFFFF;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.vector23{
+  position: absolute;
+width: 324px;
+height: 0px;
+left: 90%;
+top: 3025.5px;
+
+border: 1px solid #EA533C;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.vector24{
+  position: absolute;
+width: 109.78px;
+height: 0px;
+left: 95%;
+top: 3054.5px;
+
+border: 1px solid #FFFFFF;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.vector25{
+  position: absolute;
+width: 128.27px;
+height: 0px;
+left: 0px;
+top: 3628px;
+
+border: 1px solid #FFFFFF;
+}
+
+.vector26{
+  position: absolute;
+width: 194px;
+height: 0px;
+left: 0px;
+top: 3658.5px;
+
+border: 1px solid #EA533C;
+}
+
+.vector27{
+  position: absolute;
+width: 65.73px;
+height: 0px;
+left: 0px;
+top: 3687.5px;
+
+border: 1px solid #FFFFFF;
+}
+
+.vector28{
+  position: absolute;
+width: 296.21px;
+height: 0px;
+left: 0px;
+top: 4106px;
+
+border: 1px solid #FFFFFF;
+}
+
+.vector29{
+  position: absolute;
+width: 448px;
+height: 0px;
+left: 0px;
+top: 4136.5px;
+
+border: 1px solid #EA533C;
+}
+
+.vector30{
+  position: absolute;
+width: 151.79px;
+height: 0px;
+left: 0px;
+top: 4165.5px;
+
+border: 1px solid #FFFFFF;
+}
+
+.vector31{
+  position: absolute;
+width: 214.22px;
+height: 0px;
+left: 94%;
+top: 4561px;
+
+border: 1px solid #FFFFFF;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.vector32{
+  position: absolute;
+width: 324px;
+height: 0px;
+left: 93%;
+top: 4591.5px;
+
+border: 1px solid #EA533C;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.vector33{
+  position: absolute;
+width: 109.78px;
+height: 0px;
+left: 96%;
+top: 4620.5px;
+
+border: 1px solid #FFFFFF;
+transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.vector34{
+  position: absolute;
+width: 221.5px;
+height: 0px;
+left: 0px;
+top: 5367px;
+
+border: 1px solid #FFFFFF;
+}
+
+.vector35{
+  position: absolute;
+width: 335px;
+height: 0px;
+left: 0px;
+top: 5397.5px;
+
+border: 1px solid #EA533C;
+}
+
+.vector36{
+  position: absolute;
+width: 113.5px;
+height: 0px;
+left: 0px;
+top: 5426.5px;
+
+border: 1px solid #FFFFFF;
+}
