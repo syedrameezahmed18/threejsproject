@@ -22,7 +22,7 @@ const bloodDot = loader.load('./assets/newblood.png')
 const streakDot = loader.load('./assets/streakc.png')
 
 //logic for creating randomly scattered particles
-const particleCnt = 3000;
+const particleCnt = 1000;
 const posArray = new Float32Array(particleCnt * 3);
 for (let i = 0; i < particleCnt * 3; i++) {
     posArray[i] = (Math.random() - 0.5) * 5
@@ -76,7 +76,7 @@ const secondBloodMesh = new THREE.Points(bloodGeometry, bloodMaterial)
 bloodMesh.position.set(0,-50,0)
 secondBloodMesh.position.set(0,-120,0)
 //adding objects to the scene
-//scene.add(particlesMesh)
+scene.add(particlesMesh)
 scene.add(bloodMesh)
 scene.add(secondBloodMesh)
 
