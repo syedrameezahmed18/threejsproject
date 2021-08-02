@@ -359,8 +359,8 @@ var fourthnewLight = new THREE.PointLight(0xe6e91b, 1, 1000) //bottom left
         light.position.set(-6 ,-51,23);
         scene.add(light);*/
 
-/*const ambientLight = new THREE.AmbientLight(0xffffff, 1, 100);
-scene.add(ambientLight); */     
+const ambientLight = new THREE.AmbientLight(0xffffff, 1, 100);
+scene.add(ambientLight);      
 
 
 /**
