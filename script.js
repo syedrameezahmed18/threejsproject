@@ -22,8 +22,8 @@ const loader = new THREE.TextureLoader()
 const redDot = loader.load('./assets/dotm.png')
 const bloodDot = loader.load('./assets/newblood.png')
 const streakDot = loader.load('./assets/streakc.png')
-const cluster = loader.load('./assets/sharp.png')
-const blueStreak = loader.load('./assets/bluestreak.png')
+const cluster = loader.load('./assets/sharpnew.png')
+const blueStreak = loader.load('./assets/bluestreaknew.png')
 
 //logic for creating randomly scattered particles
 const particleCnt = 1000;
@@ -38,13 +38,13 @@ for (let i = 0; i < bloodCnt * 3; i++) {
     pArray[i] = (Math.random() - 0.5) * 3
 }
 
-const clusterCnt = 1000;
+const clusterCnt = 500;
 const cArray = new Float32Array(clusterCnt * 3);
 for (let i = 0; i < clusterCnt * 3; i++) {
     cArray[i] = (Math.random() - 0.5) * 5
 }
 
-const blueCnt = 500;
+const blueCnt = 200;
 const bArray = new Float32Array(blueCnt * 3);
 for (let i = 0; i < blueCnt * 3; i++) {
     bArray[i] = (Math.random() - 0.5) * 5
@@ -65,13 +65,13 @@ const material = new THREE.PointsMaterial({
 })
 
 const clusterMaterial = new THREE.PointsMaterial({
-    size: 0.03,
+    size: 0.1,
     map: cluster,
-    transparent: true
+    transparent: false
 })
 
 const blueMaterial = new THREE.PointsMaterial({
-    size: 0.03,
+    size: 0.2,
     map: blueStreak,
     transparent: true
 })
@@ -109,13 +109,13 @@ const blueMesh = new THREE.Points(blueStreakGeometry, blueMaterial)
 let rightCMesh = new THREE.Points(clusterGeometry, clusterMaterial)
 let rightblueMesh = new THREE.Points(blueStreakGeometry, blueMaterial)
 
-rightCMesh.position.set(6,0,0);
-rightblueMesh.position.set(6,0,0);
+rightCMesh.position.set(6,0,1);
+rightblueMesh.position.set(6,0,1);
 
 bloodMesh.position.set(0,-50,0)
 secondBloodMesh.position.set(0,-120,0)
-clusterMesh.position.set(-6,0,0);
-blueMesh.position.set(-6,0,0);
+clusterMesh.position.set(-6,0,1);
+blueMesh.position.set(-6,0,1);
 //adding objects to the scene
 /*scene.add(particlesMesh)
 scene.add(bloodMesh)
@@ -441,8 +441,8 @@ const tick = () => {
     bloodMesh.rotation.x += -.5 * elapsedTime
     secondBloodMesh.rotation.y = -.5 * elapsedTime
     test.rotation.y += .1 * elapsedTime
-  //  clusterMesh.rotation.y = -.5*elapsedTime
-   // blueMesh.rotation.y = -.5 * elapsedTime
+   //clusterMesh.rotation.x = -.5*elapsedTime
+    //blueMesh.rotation.x = -.5 * elapsedTime
 
     
     
@@ -453,14 +453,14 @@ const tick = () => {
         bloodMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)
         secondBloodMesh.rotation.x -= -mouseY * (elapsedTime * 0.0003)   
         secondBloodMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)
-        clusterMesh.rotation.x -= -mouseY * (elapsedTime * 0.0003)
-        clusterMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)
-        blueMesh.rotation.x -= -mouseY * (elapsedTime * 0.0003)
-        blueMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)
-        rightCMesh.rotation.x -= -mouseY * (elapsedTime * 0.0003)
-        rightCMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)
-        rightblueMesh.rotation.x -= -mouseY * (elapsedTime * 0.0003)
-        rightblueMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)
+        clusterMesh.rotation.x -= -mouseY * (elapsedTime * 0.0001)
+        clusterMesh.rotation.y -= -mouseX * (elapsedTime * 0.0001)
+        blueMesh.rotation.x -= -mouseY * (elapsedTime * 0.0001)
+        blueMesh.rotation.y -= -mouseX * (elapsedTime * 0.0001)
+        rightCMesh.rotation.x -= -mouseY * (elapsedTime * 0.0001)
+        rightCMesh.rotation.y -= -mouseX * (elapsedTime * 0.0001)
+        rightblueMesh.rotation.x -= -mouseY * (elapsedTime * 0.0001)
+        rightblueMesh.rotation.y -= -mouseX * (elapsedTime * 0.0001)
         
         
     }
