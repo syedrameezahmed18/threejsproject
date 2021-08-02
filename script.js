@@ -15,14 +15,16 @@ const particlesGeometry = new THREE.BufferGeometry;
 const bloodGeometry = new THREE.BufferGeometry;
 const clusterGeometry = new THREE.BufferGeometry;
 const blueStreakGeometry = new THREE.BufferGeometry;
+const shardGeometry = new THREE.BufferGeometry;
 
 //loading custom png for particles
 const loader = new THREE.TextureLoader()
 const redDot = loader.load('./assets/dotm.png')
 const bloodDot = loader.load('./assets/newblood.png')
 const streakDot = loader.load('./assets/streakc.png')
-const cluster = loader.load('./assets/sharpnew.png')
+const cluster = loader.load('./assets/big-streak-final.png')
 const blueStreak = loader.load('./assets/bluestreaknew.png')
+const shardStreak = loader.load('./assets/circlestreak.png')
 
 //logic for creating randomly scattered particles
 const particleCnt = 1000;
@@ -49,11 +51,18 @@ for (let i = 0; i < blueCnt * 3; i++) {
     bArray[i] = (Math.random() - 0.5) * 5
 }
 
+const shardCnt = 200;
+const sArray = new Float32Array(shardCnt * 3);
+for (let i = 0; i < shardCnt * 3; i++) {
+    sArray[i] = (Math.random() - 0.5) * 5
+}
+
 //initializing particles
 clusterGeometry.setAttribute('position', new THREE.BufferAttribute(cArray, 3))
 particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3))
 bloodGeometry.setAttribute('position', new THREE.BufferAttribute(pArray,3))
 blueStreakGeometry.setAttribute('position', new THREE.BufferAttribute(bArray,3))
+shardGeometry.setAttribute('position', new THREE.BufferAttribute(sArray,3))
 
 
 //materials for initial objects
@@ -64,7 +73,7 @@ const material = new THREE.PointsMaterial({
 })
 
 const clusterMaterial = new THREE.PointsMaterial({
-    size: 0.1,
+    size: 0.05,
     map: cluster,
     transparent: false
 })
@@ -81,6 +90,12 @@ const bloodMaterial = new THREE.PointsMaterial({
     transparent: true
 })
 
+const shardMaterial = new THREE.PointsMaterial({
+    size: 0.08,
+    map: shardStreak,
+    transparent: true
+})
+
 // creating meshs (material + geometry)
 const particlesMesh = new THREE.Points(particlesGeometry, material)
 const bloodMesh = new THREE.Points(bloodGeometry, bloodMaterial)
@@ -89,6 +104,9 @@ const clusterMesh = new THREE.Points(clusterGeometry, clusterMaterial)
 const blueMesh = new THREE.Points(blueStreakGeometry, blueMaterial)
 let rightCMesh = new THREE.Points(clusterGeometry, clusterMaterial)
 let rightblueMesh = new THREE.Points(blueStreakGeometry, blueMaterial)
+let blueStreakF = new THREE.Points(clusterGeometry, blueMaterial)
+let shardMesh = new THREE.Points(shardGeometry, shardMaterial)
+let shardMesh2 = new THREE.Points(shardGeometry, shardMaterial)
 
 //particle system positions
 rightCMesh.position.set(6.5,0,1);
@@ -97,6 +115,12 @@ bloodMesh.position.set(-1,-48,0)
 secondBloodMesh.position.set(0,-120,0)
 clusterMesh.position.set(-6.5,0,1);
 blueMesh.position.set(-6.5,0,1);
+blueStreakF.position.set(0,-24,-12)
+blueStreakF.scale.set(3,3,3)
+shardMesh.position.set(0,-24,-8)
+shardMesh.scale.set(2,2,2)
+shardMesh2.position.set(0,-64,-8)
+shardMesh2.scale.set(2,2,2)
 
 //adding objects to the scene
 
@@ -108,6 +132,9 @@ scene.add(clusterMesh)
 scene.add(blueMesh)
 scene.add(rightCMesh)
 scene.add(rightblueMesh)
+//scene.add(blueStreakF)
+scene.add(shardMesh)
+scene.add(shardMesh2)
 
 //custom models importing and code
 var ourObj1;
@@ -181,6 +208,16 @@ var ship_material = new THREE.MeshPhongMaterial( {
     opacity: 0.5
  } );
 
+ var shards_material = new THREE.MeshPhongMaterial({
+    color: 'rgb(79,19,9)',
+    emissive:'rgb(79,19,9)',
+    specular:'orange',
+    shininess: 50,
+    reflectivity: 1,
+    transparent: true,
+    opacity: 0.3
+ })
+
 newloader.load( 'lastpane.obj',
     function( object ){
         object.traverse( function( child ) {
@@ -193,7 +230,7 @@ newloader.load( 'lastpane.obj',
 
         //object.children[0].name
         //console.log(object);
-        object.position.z -= 12;
+        object.position.z -= 10;
         object.rotation.x = 0.5;
         object.rotation.y = 70;
         object.position.y = -53;
@@ -210,7 +247,7 @@ newloader.load( 'Final Shape/Final.obj',
     function( object ){
         object.traverse( function( child ) {
             if ( child instanceof THREE.Mesh ) {
-                child.material = ship_material;
+                child.material = shards_material;
             }
         } );
         scene.add( object );
@@ -466,6 +503,9 @@ const tick = () => {
     secondBloodMesh.rotation.y = -.5 * elapsedTime
     clusterMesh.rotation.x = -.1*elapsedTime
     blueMesh.rotation.x = -.1 * elapsedTime
+    blueStreakF.rotation.y = -.1 * elapsedTime
+    shardMesh.rotation.x += -.1*elapsedTime
+    shardMesh2.rotation.x += -.1*elapsedTime
     
     
 
@@ -486,6 +526,8 @@ const tick = () => {
         rightCMesh.rotation.y -= -mouseX * (elapsedTime * 0.0001)
         rightblueMesh.rotation.x -= -mouseY * (elapsedTime * 0.0001)
         rightblueMesh.rotation.y -= -mouseX * (elapsedTime * 0.0001)
+        shardMesh.rotation.x -= -mouseY * (elapsedTime * 0.0001)
+       
         
         
     }
@@ -511,7 +553,7 @@ var render = function() {
 
     const elapsedTime = clock.getDelta()
 
-   // ourObjc1.rotation.x += 0.005;
+  // ourObjc1.rotation.y += 0.005;
     
     // Rotate the objects indefinitely
    // ourObj1.children[0].material.opacity -= 0.001;
