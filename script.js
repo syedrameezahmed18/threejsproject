@@ -166,8 +166,6 @@ var ship_material = new THREE.MeshPhongMaterial( {
     color: 'rgb(79,19,9)',
     emissive:'rgb(79,19,9)',
     specular:'orange',
-    shininess: 50,
-    transparent: true,
     opacity: 1
  } );
 var newloader = new THREE.OBJLoader();
@@ -218,6 +216,16 @@ var ship_material = new THREE.MeshPhongMaterial( {
     opacity: 0.3
  })
 
+ var redblue_material = new THREE.MeshPhongMaterial({
+    color: 'rgb(79,19,9)',
+    emissive:'rgb(79,19,9)',
+    specular:'orange',
+    shininess: 50,
+    reflectivity: 1,
+    transparent: true,
+    opacity: 0.5
+ })
+
 newloader.load( 'lastpane.obj',
     function( object ){
         object.traverse( function( child ) {
@@ -247,7 +255,7 @@ newloader.load( 'Final Shape/Final.obj',
     function( object ){
         object.traverse( function( child ) {
             if ( child instanceof THREE.Mesh ) {
-                child.material = shards_material;
+                child.material = redblue_material;
             }
         } );
         scene.add( object );
@@ -273,7 +281,7 @@ newloader.load( 'Final Shape/Final.obj',
     function( object ){
         object.traverse( function( child ) {
             if ( child instanceof THREE.Mesh ) {
-                child.material = ship_material;
+                child.material = redblue_material;
             }
         } );
         scene.add( object );
@@ -302,6 +310,21 @@ newloader.load( 'Final Shape/Final.obj',
 
 
 //initialization of lights
+
+const shard1L1 = new THREE.PointLight('blue', 30, 20)
+shard1L1.position.set(6,-30, -4)
+scene.add(shard1L1);
+
+const shard2L1 = new THREE.PointLight('blue', 30, 20)
+shard2L1.position.set(7,-70, -4)
+scene.add(shard2L1);
+
+
+
+/*const sphereSize = 1;
+const pointLightHelper = new THREE.PointLightHelper(shard1L1, sphereSize);
+scene.add(pointLightHelper);*/
+
 
 /*const pointLight = new THREE.PointLight(0xff0000, 1, 100);
 pointLight.position.set(-1, 5, 5);
@@ -396,7 +419,7 @@ var fourthnewLight = new THREE.PointLight(0xe6e91b, 1, 1000) //bottom left
         light.position.set(-6 ,-51,23);
         scene.add(light);*/
 
-const ambientLight = new THREE.AmbientLight(0xffffff, 1, 100);
+const ambientLight = new THREE.AmbientLight(0xffffff, 2, 100);
 scene.add(ambientLight);      
 
 
