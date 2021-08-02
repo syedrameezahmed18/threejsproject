@@ -80,6 +80,18 @@ canvas {
     width: 550px;
   }
 
+  .absolute-test {
+    position: absolute;
+    top: 1000px;
+    right: 200px;
+    z-index: -0;
+  }
+
+  .absolute-test img{
+    width: 800px;
+    height: 600px;
+  }
+
   .top-cont {
     height: 500px;
     display: flex;

@@ -113,9 +113,12 @@ scene.add(rightblueMesh)
 var ourObj1;
 var ourObj2;
 
+var ourObjc1;
+var ourObjc2;
+
 var mtlLoader = new THREE.MTLLoader();
 
-mtlLoader.load('lastpane.mtl', function(materials){
+/*mtlLoader.load('lastpane.mtl', function(materials){
     materials.preload();
 
     //Load the object
@@ -130,25 +133,136 @@ mtlLoader.load('lastpane.mtl', function(materials){
         object.position.y = -123;
         object.position.x = 4;
     })
-})
+})*/
 
-mtlLoader.load('lastpane.mtl', function(materials){
-    materials.preload();
+var ship_material = new THREE.MeshPhongMaterial( { 
+    color: 'rgb(79,19,9)',
+    emissive:'rgb(79,19,9)',
+    specular:'orange',
+    shininess: 50,
+    transparent: true,
+    opacity: 1
+ } );
+var newloader = new THREE.OBJLoader();
+newloader.load( 'lastpane.obj',
+    function( object ){
+        object.traverse( function( child ) {
+            if ( child instanceof THREE.Mesh ) {
+                child.material = ship_material;
+            }
+        } );
+        scene.add( object );
+        ourObj2 = object;
 
-    //Load the object
-    var objLoader = new THREE.OBJLoader();
-    objLoader.setMaterials(materials)
-    objLoader.load('lastpane.obj', function(object){
-        scene.add(object);
-        ourObj1 = object;
+        //object.children[0].name
+        //console.log(object);
         object.position.z -= 10;
+        object.rotation.x = 0.5;
+        object.rotation.y = 70;
+        object.position.y = -125;
+        object.position.x = 4;
+        
+    },
+    function( xhr ){
+        console.log( (xhr.loaded / xhr.total * 100) + "% loaded")
+    },
+    function( err ){
+        console.error( "Error loading 'ship.obj'")
+    }
+);
+
+var ship_material = new THREE.MeshPhongMaterial( { 
+    color: 'rgb(79,19,9)',
+    emissive:'rgb(79,19,9)',
+    specular:'orange',
+    shininess: 50,
+    reflectivity: 1,
+    transparent: true,
+    opacity: 0.5
+ } );
+
+newloader.load( 'lastpane.obj',
+    function( object ){
+        object.traverse( function( child ) {
+            if ( child instanceof THREE.Mesh ) {
+                child.material = ship_material;
+            }
+        } );
+        scene.add( object );
+        ourObj1 = object;
+
+        //object.children[0].name
+        //console.log(object);
+        object.position.z -= 12;
         object.rotation.x = 0.5;
         object.rotation.y = 70;
         object.position.y = -53;
         object.position.x = 4;
-        
-    })
-})
+    },
+    function( xhr ){
+        console.log( (xhr.loaded / xhr.total * 100) + "% loaded")
+    },
+    function( err ){
+        console.error( "Error loading 'ship.obj'")
+    }
+);
+newloader.load( 'Final Shape/Final.obj',
+    function( object ){
+        object.traverse( function( child ) {
+            if ( child instanceof THREE.Mesh ) {
+                child.material = ship_material;
+            }
+        } );
+        scene.add( object );
+        ourObjc1 = object;
+        console.log(object)
+        //object.children[0].name
+        object.position.z -= 6;
+        object.position.y = -24;
+        object.position.x = 2;
+        object.rotation.y = 11;
+        object.rotation.x = 11;
+        object.rotation.z = 0.5;
+        object.scale.set(3,3,3)
+    },
+    function( xhr ){
+        console.log( (xhr.loaded / xhr.total * 100) + "% loaded")
+    },
+    function( err ){
+        console.error( "Error loading 'ship.obj'")
+    }
+);
+newloader.load( 'Final Shape/Final.obj',
+    function( object ){
+        object.traverse( function( child ) {
+            if ( child instanceof THREE.Mesh ) {
+                child.material = ship_material;
+            }
+        } );
+        scene.add( object );
+        ourObjc2 = object;
+        console.log(object)
+        //object.children[0].name
+        object.position.z -= 6;
+        object.position.y = -64;
+        object.position.x = 3;
+        object.rotation.y = 11;
+        object.rotation.x = 11;
+        object.rotation.z = 0.5;
+        object.scale.set(3,3,3)
+    },
+    function( xhr ){
+        console.log( (xhr.loaded / xhr.total * 100) + "% loaded")
+    },
+    function( err ){
+        console.error( "Error loading 'ship.obj'")
+    }
+);
+
+
+
+
+
 
 //initialization of lights
 
@@ -166,9 +280,9 @@ scene.add(pointLightHelper);*/
 
 //(0,-86,-2)
 
-var light = new THREE.PointLight( 0x340E07, 20, 1000)   //top left
+/*var light = new THREE.PointLight( 0x340E07, 1, 1000)   //top left
         light.position.set(-20 ,-111,-10);
-        scene.add(light);
+        scene.add(light);*/
 
 /*var fifthLight = new THREE.PointLight( 0xC65337, 20, 1000)  //top middle
 fifthLight.position.set(5 ,-111,-16);
@@ -178,17 +292,17 @@ var sixthLight = new THREE.PointLight(0xC65337, 20, 1000)  //bottom middle
 sixthLight.position.set(5,-126,-16)
 scene.add(sixthLight)*/
 
-var secondLight = new THREE.PointLight( 0x340E07, 20, 1000) //bottom middle
+/*var secondLight = new THREE.PointLight( 0x340E07, 1, 1000) //bottom middle
         secondLight.position.set(10 ,-126,-10);
         scene.add(secondLight);
 
-var thirdLight = new THREE.PointLight( 0x340E07, 20, 1000)  //top right
+var thirdLight = new THREE.PointLight( 0x340E07, 1, 1000)  //top right
         thirdLight.position.set(10 ,-111,-10);
         scene.add(thirdLight);
 
-var fourthLight = new THREE.PointLight( 0x340E07, 20, 1000) //bottom left
+var fourthLight = new THREE.PointLight( 0x340E07, 1, 1000) //bottom left
         fourthLight.position.set(-20 ,-126,-10);
-        scene.add(fourthLight);
+        scene.add(fourthLight);*/
 
 
       /*  const sphereSize = 1;
@@ -205,33 +319,26 @@ var fourthLight = new THREE.PointLight( 0x340E07, 20, 1000) //bottom left
         scene.add(fourthHelper);*/
 
 
-        var newlight = new THREE.PointLight( 0x340E07, 50, 1000)   //top left
+     /*   var newlight = new THREE.PointLight( 0x340E07, 1, 1000)   //top left
         newlight.position.set(-20 ,-41,-10);
         scene.add(newlight);
 
 
 
-var thirdnewLight = new THREE.PointLight( 0x340E07, 50, 1000)  //top right
+var thirdnewLight = new THREE.PointLight( 0x340E07, 1, 1000)  //top right
         thirdnewLight.position.set(10 ,-41,-10);
         scene.add(thirdnewLight);
 
-var fourthnewLight = new THREE.PointLight( 0x340E07, 50, 1000) //bottom left
+var fourthnewLight = new THREE.PointLight(0xe6e91b, 1, 1000) //bottom left
         fourthnewLight.position.set(-20 ,-56,-10);
-        scene.add(fourthnewLight);
+        scene.add(fourthnewLight);*/
 
 
-    var middleLight = new THREE.PointLight( 0x340E07, 50, 1000)
-        middleLight.position.set(6,-42,-9);
-        scene.add(middleLight)
+        //(1,-32,-5) light falling from top
+        //(8,-58,-9) light falling from right
+        //(-10,-60,-7) light falling from left bottom
 
-    var middleLight2 = new THREE.PointLight(0x340E07, 20, 1000)  
-        middleLight2.position.set(-15,-65,-10)  
-        
-      /*  const middleSize = 1;
-        const newmiddleLightHelper = new THREE.PointLightHelper(middleLight, middleSize);
-        scene.add(newmiddleLightHelper); 
-        const newmiddleLightHelper2 = new THREE.PointLightHelper(middleLight2, middleSize);
-        scene.add(newmiddleLightHelper2); */
+ 
 
      /*  const newsphereSize = 1;
         const newpointLightHelper = new THREE.PointLightHelper(newlight, newsphereSize);
@@ -359,6 +466,8 @@ const tick = () => {
     secondBloodMesh.rotation.y = -.5 * elapsedTime
     clusterMesh.rotation.x = -.1*elapsedTime
     blueMesh.rotation.x = -.1 * elapsedTime
+    
+    
 
     
     
@@ -401,20 +510,21 @@ var render = function() {
     requestAnimationFrame(render);
 
     const elapsedTime = clock.getDelta()
+
+   // ourObjc1.rotation.x += 0.005;
     
     // Rotate the objects indefinitely
-    ourObj2.rotation.y += 1*elapsedTime;
+   // ourObj1.children[0].material.opacity -= 0.001;
 
-    if(mouseX > 0) {
-        
-        ourObj2.rotation.y -= -mouseX * (elapsedTime * 0.003) 
-    }
+  // ourObjc1.rotation.x += 0.01;
+
+    
    // light.position.y +=.03;
 
     renderer.render(scene, camera);
 }
 
-//render();
+render();
 
 
 
