@@ -35,7 +35,7 @@ for (let i = 0; i < particleCnt * 3; i++) {
 const bloodCnt = 400;
 const pArray = new Float32Array(bloodCnt * 3);
 for (let i = 0; i < bloodCnt * 3; i++) {
-    pArray[i] = (Math.random() - 0.5) * 3
+    pArray[i] = (Math.random() - 0.5) * 2
 }
 
 const clusterCnt = 500;
@@ -109,17 +109,17 @@ const blueMesh = new THREE.Points(blueStreakGeometry, blueMaterial)
 let rightCMesh = new THREE.Points(clusterGeometry, clusterMaterial)
 let rightblueMesh = new THREE.Points(blueStreakGeometry, blueMaterial)
 
-rightCMesh.position.set(6,0,1);
-rightblueMesh.position.set(6,0,1);
+rightCMesh.position.set(6.5,0,1);
+rightblueMesh.position.set(6.5,0,1);
 
-bloodMesh.position.set(0,-50,0)
+bloodMesh.position.set(-1,-48,0)
 secondBloodMesh.position.set(0,-120,0)
-clusterMesh.position.set(-6,0,1);
-blueMesh.position.set(-6,0,1);
+clusterMesh.position.set(-6.5,0,1);
+blueMesh.position.set(-6.5,0,1);
 //adding objects to the scene
-/*scene.add(particlesMesh)
-scene.add(bloodMesh)
-scene.add(secondBloodMesh)*/
+/*scene.add(particlesMesh)*/
+//scene.add(bloodMesh)
+//scene.add(secondBloodMesh)
 
 scene.add(clusterMesh)
 scene.add(blueMesh)
@@ -438,19 +438,19 @@ const tick = () => {
     // Update objects
     sphere.rotation.y = .5 * elapsedTime
     particlesMesh.rotation.y += -.1 * elapsedTime
-    bloodMesh.rotation.x += -.5 * elapsedTime
+    bloodMesh.rotation.x += -.1 * elapsedTime
     secondBloodMesh.rotation.y = -.5 * elapsedTime
     test.rotation.y += .1 * elapsedTime
-   //clusterMesh.rotation.x = -.5*elapsedTime
-    //blueMesh.rotation.x = -.5 * elapsedTime
+    clusterMesh.rotation.x = -.1*elapsedTime
+    blueMesh.rotation.x = -.1 * elapsedTime
 
     
     
     if (mouseX > 0) {
         particlesMesh.rotation.x -= -mouseY * (elapsedTime * 0.0003)
         particlesMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)    
-        bloodMesh.rotation.x -= -mouseY * (elapsedTime * 0.0003)   
-        bloodMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)
+      //  bloodMesh.rotation.x -= -mouseY * (elapsedTime * 0.0003)   
+      //  bloodMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)
         secondBloodMesh.rotation.x -= -mouseY * (elapsedTime * 0.0003)   
         secondBloodMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)
         clusterMesh.rotation.x -= -mouseY * (elapsedTime * 0.0001)
