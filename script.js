@@ -7,15 +7,14 @@ const canvas = document.querySelector('#bg')
 const scene = new THREE.Scene();
 
 //initial objects
-const geometry = new THREE.TorusGeometry(.7, .2, 16, 100);
 
-//first parameter is size 0.5 means 50% of original size
-const testGeometry = new THREE.OctahedronGeometry(0.5, 0)
+
+//first parameter is size 0.5 means 50% of original size (geometries initializations)
+
 const particlesGeometry = new THREE.BufferGeometry;
 const bloodGeometry = new THREE.BufferGeometry;
 const clusterGeometry = new THREE.BufferGeometry;
 const blueStreakGeometry = new THREE.BufferGeometry;
-
 
 //loading custom png for particles
 const loader = new THREE.TextureLoader()
@@ -50,7 +49,7 @@ for (let i = 0; i < blueCnt * 3; i++) {
     bArray[i] = (Math.random() - 0.5) * 5
 }
 
-
+//initializing particles
 clusterGeometry.setAttribute('position', new THREE.BufferAttribute(cArray, 3))
 particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3))
 bloodGeometry.setAttribute('position', new THREE.BufferAttribute(pArray,3))
@@ -82,41 +81,25 @@ const bloodMaterial = new THREE.PointsMaterial({
     transparent: true
 })
 
-const testMaterial = new THREE.MeshStandardMaterial({
-    color: 'yellow',
-    roughness:0
-})
-
-const torusMaterial = new THREE.PointsMaterial({
-    size: 0.01,
-    color: 'lightgray'
-})
-//material.color = new THREE.Color('#880808')
-
-const sphere = new THREE.Points(geometry, torusMaterial)
-const test = new THREE.Mesh(testGeometry, testMaterial)
-
-test.position.set(0,-1,0)
+// creating meshs (material + geometry)
 const particlesMesh = new THREE.Points(particlesGeometry, material)
-
 const bloodMesh = new THREE.Points(bloodGeometry, bloodMaterial)
-
 const secondBloodMesh = new THREE.Points(bloodGeometry, bloodMaterial)
-
 const clusterMesh = new THREE.Points(clusterGeometry, clusterMaterial)
 const blueMesh = new THREE.Points(blueStreakGeometry, blueMaterial)
-
 let rightCMesh = new THREE.Points(clusterGeometry, clusterMaterial)
 let rightblueMesh = new THREE.Points(blueStreakGeometry, blueMaterial)
 
+//particle system positions
 rightCMesh.position.set(6.5,0,1);
 rightblueMesh.position.set(6.5,0,1);
-
 bloodMesh.position.set(-1,-48,0)
 secondBloodMesh.position.set(0,-120,0)
 clusterMesh.position.set(-6.5,0,1);
 blueMesh.position.set(-6.5,0,1);
+
 //adding objects to the scene
+
 /*scene.add(particlesMesh)*/
 //scene.add(bloodMesh)
 //scene.add(secondBloodMesh)
@@ -126,27 +109,11 @@ scene.add(blueMesh)
 scene.add(rightCMesh)
 scene.add(rightblueMesh)
 
-
-
-//custom objects importing and code
+//custom models importing and code
 var ourObj1;
 var ourObj2;
 
 var mtlLoader = new THREE.MTLLoader();
-/*mtlLoader.load('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2621168/glass.mtl', function(materials){
-    materials.preload();
-
-    //Load the object
-    var objLoader = new THREE.OBJLoader();
-    objLoader.setMaterials(materials)
-    objLoader.load('https://s3-us-west-2.amazonaws.com/s.cdpn.io/2621168/glass.obj', function(object){
-        scene.add(object);
-
-        object.position.z = -20;
-        object.position.y = -20;
-        object.position.x = 0;
-    })
-})*/
 
 mtlLoader.load('lastpane.mtl', function(materials){
     materials.preload();
@@ -183,19 +150,8 @@ mtlLoader.load('lastpane.mtl', function(materials){
     })
 })
 
-/*object.position.z -= 8;
-        object.rotation.x = 0.5;
-        object.rotation.y = 70;
-        object.position.y = -53;
-        object.position.x = 4;*/
+//initialization of lights
 
-
-
-
-
-
-
-//initialization of light
 /*const pointLight = new THREE.PointLight(0xff0000, 1, 100);
 pointLight.position.set(-1, 5, 5);
 scene.add(pointLight);
@@ -300,17 +256,8 @@ var fourthnewLight = new THREE.PointLight( 0x340E07, 50, 1000) //bottom left
 scene.add(ambientLight); */     
 
 
-/*particlesMesh.onBeforeRender = function(camera) {
-    var pos = camera.position;
-    this.position.set( pos.x, pos.y, pos.z-2 );
-};*/
-
-
-
-
-
 /**
- * Sizes
+ * Screen Sizes
  */
 const sizes = {
     width: window.innerWidth,
@@ -341,6 +288,7 @@ camera.position.y = 0
 camera.position.z = 2
 scene.add(camera)
 
+
 // Controls
 // const controls = new OrbitControls(camera, canvas)
 // controls.enableDamping = true
@@ -355,15 +303,12 @@ renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 renderer.setClearColor(new THREE.Color('black'), 1)
 
-
-
 /**
  * Animate
  */
 
 const clock = new THREE.Clock()
 document.addEventListener('mousemove', animateParticles)
-
 
 let mouseX = 0;
 let mouseY = 0;
@@ -375,13 +320,11 @@ function animateParticles(event) {
 
 var lastScrollTop = 0;
 
+//animations on scrolling
+
 function moveCamera() {
 
     const t = document.body.getBoundingClientRect().top;
-    test.rotation.x += 0.005;
-    test.rotation.y += 0.005;
-    test.rotation.z += 0.005;
-
     camera.position.y = t * 0.03;
     particlesMesh.position.y = camera.position.y
     clusterMesh.position.y = camera.position.y
@@ -398,37 +341,12 @@ function moveCamera() {
        ourObj2.rotation.y -= 0.05
     }
     lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling*/
-    
-    //0.0156
-    
-
-   
-
-   // ourObj2.position.y = -0.0002 * t
-
-
-    //-4222 for lab portion
-
-    console.log(t);
-
-   /* if(t < -4000) {
-        ourObj2.position.set(-5,-7,-8)
-        ourObj2.rotation.x = -49.8;
-        ourObj2.rotation.z = 0;  
-    }
-    else {
-        ourObj2.position.set(-8,-50,-8)
-    }*/
 
 }
 
-
-
-
-
 document.body.onscroll = moveCamera
 
-
+//animation per time tick
 
 const tick = () => {
 
@@ -436,11 +354,9 @@ const tick = () => {
     const incTime = clock.getElapsedTime()
 
     // Update objects
-    sphere.rotation.y = .5 * elapsedTime
     particlesMesh.rotation.y += -.1 * elapsedTime
     bloodMesh.rotation.x += -.1 * elapsedTime
     secondBloodMesh.rotation.y = -.5 * elapsedTime
-    test.rotation.y += .1 * elapsedTime
     clusterMesh.rotation.x = -.1*elapsedTime
     blueMesh.rotation.x = -.1 * elapsedTime
 
@@ -479,7 +395,7 @@ const tick = () => {
 tick()
 
 
-
+//animation for custom model
 
 var render = function() {
     requestAnimationFrame(render);
@@ -498,7 +414,6 @@ var render = function() {
     renderer.render(scene, camera);
 }
 
-// Call this to render the entire scene
 //render();
 
 
