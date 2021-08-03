@@ -115,7 +115,9 @@ rightblueMesh.position.set(6.5, 0, 1);
 bloodMesh.position.set(-1, -48, -6)
 bloodMesh.scale.set(6, 4.5, 2)
 bloodMesh.rotation.z = 1;
-secondBloodMesh.position.set(0, -120, 0)
+secondBloodMesh.position.set(0, -120, -6)
+secondBloodMesh.scale.set(6, 4.5, 2)
+secondBloodMesh.rotation.z = 1;
 clusterMesh.position.set(-6.5, 0, 1);
 blueMesh.position.set(-6.5, 0, 1);
 blueStreakF.position.set(0, -24, -12)
@@ -129,7 +131,7 @@ shardMesh2.scale.set(2, 2, 2)
 
 /*scene.add(particlesMesh)*/
 scene.add(bloodMesh)
-//scene.add(secondBloodMesh)
+scene.add(secondBloodMesh)
 
 scene.add(clusterMesh)
 scene.add(blueMesh)
@@ -174,12 +176,22 @@ var ship_material = new THREE.MeshPhongMaterial({
     transparent: true,
     opacity: 0.4
 });
+
+var ship_material2 = new THREE.MeshPhongMaterial({
+    color: 'rgb(79,19,9)',
+    emissive: 'rgb(79,19,9)',
+    specular: 'orange',
+    shininess: 50,
+    reflectivity: 1,
+    transparent: true,
+    opacity: 0.4
+});
 var newloader = new THREE.OBJLoader();
 newloader.load('lastpane.obj',
     function (object) {
         object.traverse(function (child) {
             if (child instanceof THREE.Mesh) {
-                child.material = ship_material;
+                child.material = ship_material2;
             }
         });
         scene.add(object);
@@ -536,11 +548,13 @@ window.addEventListener("scroll", () => {
                 ourObjc2.scale.y += (0.05 + t / 100000)
                 ourObjc2.scale.z += (0.05 + t / 100000)
             }
+
             if (t < -3600 && t > -4200) {  //second pane rotation anticlock
 
-                ourObj2.rotation.y += 0.035
-                ourObj2.children[0].material.opacity -= 0.005
+                ourObj2.rotation.y += 0.03
+                ourObj2.children[0].material.opacity -= 0.007
             }
+            
 
         }
 
@@ -582,9 +596,10 @@ window.addEventListener("scroll", () => {
                 ourObjc2.scale.z -= (0.05 + t / 100000)
             }
             if (t > -4200 && t < -3600) {   //second pane rotation clock
-                ourObj2.rotation.y -= 0.05
-                ourObj2.children[0].material.opacity += 0.005
+                ourObj2.rotation.y -= 0.03
+                ourObj2.children[0].material.opacity += 0.007
             }
+           
         }
 
 
@@ -646,8 +661,8 @@ const tick = () => {
         particlesMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)
         //  bloodMesh.rotation.x -= -mouseY * (elapsedTime * 0.0003)   
         //  bloodMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)
-        secondBloodMesh.rotation.x -= -mouseY * (elapsedTime * 0.0003)
-        secondBloodMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)
+        //secondBloodMesh.rotation.x -= -mouseY * (elapsedTime * 0.0003)
+        //secondBloodMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)
         clusterMesh.rotation.x -= -mouseY * (elapsedTime * 0.0001)
         clusterMesh.rotation.y -= -mouseX * (elapsedTime * 0.0001)
         blueMesh.rotation.x -= -mouseY * (elapsedTime * 0.0001)
