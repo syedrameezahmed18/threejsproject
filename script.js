@@ -90,6 +90,11 @@ const bloodMaterial = new THREE.PointsMaterial({
     map: bloodDot,
     transparent: true
 })
+const secondBloodMaterial = new THREE.PointsMaterial({
+    size: 0.12,
+    map: bloodDot,
+    transparent: true
+})
 
 const shardMaterial = new THREE.PointsMaterial({
     size: 0.08,
@@ -100,7 +105,7 @@ const shardMaterial = new THREE.PointsMaterial({
 // creating meshs (material + geometry)
 const particlesMesh = new THREE.Points(particlesGeometry, material)
 const bloodMesh = new THREE.Points(bloodGeometry, bloodMaterial)
-const secondBloodMesh = new THREE.Points(bloodGeometry, bloodMaterial)
+const secondBloodMesh = new THREE.Points(bloodGeometry, secondBloodMaterial)
 const clusterMesh = new THREE.Points(clusterGeometry, clusterMaterial)
 const blueMesh = new THREE.Points(blueStreakGeometry, blueMaterial)
 let rightCMesh = new THREE.Points(clusterGeometry, clusterMaterial)
@@ -115,6 +120,7 @@ rightblueMesh.position.set(6.5, 0, 1);
 bloodMesh.position.set(-1, -48, -6)
 bloodMesh.scale.set(6, 4.5, 2)
 bloodMesh.rotation.z = 1;
+bloodMesh.material.opacity = 1;
 secondBloodMesh.position.set(0, -120, -6)
 secondBloodMesh.scale.set(6, 4.5, 2)
 secondBloodMesh.rotation.z = 1;
@@ -277,7 +283,7 @@ newloader.load('Final Shape/Final.obj',
         object.rotation.y = 11;
         object.rotation.x = 11;
         object.rotation.z = 0.5;
-        object.scale.set(3, 3, 3)
+        object.scale.set(2.5, 2.5, 2.5)
     },
     function (xhr) {
         console.log((xhr.loaded / xhr.total * 100) + "% loaded")
@@ -303,7 +309,7 @@ newloader.load('Final Shape/Final.obj',
         object.rotation.y = 11;
         object.rotation.x = 11;
         object.rotation.z = 0.5;
-        object.scale.set(3, 3, 3)
+        object.scale.set(2.5, 2.5, 2.5)
     },
     function (xhr) {
         console.log((xhr.loaded / xhr.total * 100) + "% loaded")
@@ -312,6 +318,8 @@ newloader.load('Final Shape/Final.obj',
         console.error("Error loading 'ship.obj'")
     }
 );
+
+console.log(bloodMesh)
 
 
 
@@ -507,7 +515,7 @@ window.addEventListener("scroll", () => {
     blueMesh.position.y = camera.position.y
     rightCMesh.position.y = camera.position.y
     rightblueMesh.position.y = camera.position.y
-    console.log(t);
+    
 
 
 
@@ -520,13 +528,15 @@ window.addEventListener("scroll", () => {
 
         if (t > -250) {
             //reset all original scales and rotations
-            console.log('reset')
-            ourObjc1.scale.set(3, 3, 3)
-            ourObjc2.scale.set(3, 3, 3)
+           
+            ourObjc1.scale.set(2.5, 2.5, 2.5)
+            ourObjc2.scale.set(2.5, 2.5, 2.5)
             ourObj1.rotation.set(0.5, 69.8, 0)
             ourObj2.rotation.set(0.5, 69.8, 0)
             ourObj1.children[0].material.opacity = 0.4
             ourObj2.children[0].material.opacity = 0.4
+            bloodMesh.material.opacity = 1;
+            secondBloodMesh.material.opacity = 1;
         }
         else {
 
@@ -539,6 +549,7 @@ window.addEventListener("scroll", () => {
             if (t < -1250 && t > -1850) { // first pane rotation anticlock
                 ourObj1.rotation.y += (0.035 + t / 100000)
                 ourObj1.children[0].material.opacity -= 0.008
+                bloodMesh.material.opacity -= 0.012
 
             }
 
@@ -553,6 +564,7 @@ window.addEventListener("scroll", () => {
 
                 ourObj2.rotation.y += 0.03
                 ourObj2.children[0].material.opacity -= 0.007
+                secondBloodMesh.material.opacity -=0.012
             }
             
 
@@ -569,13 +581,15 @@ window.addEventListener("scroll", () => {
 
         if (t > -250) {
             //reset all original scales and rotations
-            console.log('reset')
+            
             ourObjc1.scale.set(3, 3, 3)
             ourObjc2.scale.set(3, 3, 3)
             ourObj1.rotation.set(0.5, 70, 0)
             ourObj2.rotation.set(0.5, 70, 0)
             ourObj1.children[0].material.opacity = 0.4
             ourObj2.children[0].material.opacity = 0.4
+            bloodMesh.material.opacity = 1;
+            secondBloodMesh.material.opacity = 1;
         }
         else {
 
@@ -588,6 +602,7 @@ window.addEventListener("scroll", () => {
             if (t > -1850 && t < -1250) { // first pane rotation clock
                 ourObj1.rotation.y -= (0.035 + t / 100000)
                 ourObj1.children[0].material.opacity += 0.008
+                bloodMesh.material.opacity += 0.012
             }
 
             if (t > -2500 && t < -1900) {   //second shard scalling decrement
@@ -598,6 +613,7 @@ window.addEventListener("scroll", () => {
             if (t > -4200 && t < -3600) {   //second pane rotation clock
                 ourObj2.rotation.y -= 0.03
                 ourObj2.children[0].material.opacity += 0.007
+                secondBloodMesh.material.opacity +=0.012
             }
            
         }
