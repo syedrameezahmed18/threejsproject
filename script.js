@@ -57,12 +57,13 @@ for (let i = 0; i < shardCnt * 3; i++) {
     sArray[i] = (Math.random() - 0.5) * 5
 }
 
+
 //initializing particles
 clusterGeometry.setAttribute('position', new THREE.BufferAttribute(cArray, 3))
 particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3))
-bloodGeometry.setAttribute('position', new THREE.BufferAttribute(pArray,3))
-blueStreakGeometry.setAttribute('position', new THREE.BufferAttribute(bArray,3))
-shardGeometry.setAttribute('position', new THREE.BufferAttribute(sArray,3))
+bloodGeometry.setAttribute('position', new THREE.BufferAttribute(pArray, 3))
+blueStreakGeometry.setAttribute('position', new THREE.BufferAttribute(bArray, 3))
+shardGeometry.setAttribute('position', new THREE.BufferAttribute(sArray, 3))
 
 
 //materials for initial objects
@@ -85,7 +86,7 @@ const blueMaterial = new THREE.PointsMaterial({
 })
 
 const bloodMaterial = new THREE.PointsMaterial({
-    size: 0.03,
+    size: 0.12,
     map: bloodDot,
     transparent: true
 })
@@ -109,23 +110,25 @@ let shardMesh = new THREE.Points(shardGeometry, shardMaterial)
 let shardMesh2 = new THREE.Points(shardGeometry, shardMaterial)
 
 //particle system positions
-rightCMesh.position.set(6.5,0,1);
-rightblueMesh.position.set(6.5,0,1);
-bloodMesh.position.set(-1,-48,0)
-secondBloodMesh.position.set(0,-120,0)
-clusterMesh.position.set(-6.5,0,1);
-blueMesh.position.set(-6.5,0,1);
-blueStreakF.position.set(0,-24,-12)
-blueStreakF.scale.set(3,3,3)
-shardMesh.position.set(0,-24,-8)
-shardMesh.scale.set(2,2,2)
-shardMesh2.position.set(0,-64,-8)
-shardMesh2.scale.set(2,2,2)
+rightCMesh.position.set(6.5, 0, 1);
+rightblueMesh.position.set(6.5, 0, 1);
+bloodMesh.position.set(-1, -48, -6)
+bloodMesh.scale.set(6, 4.5, 2)
+bloodMesh.rotation.z = 1;
+secondBloodMesh.position.set(0, -120, 0)
+clusterMesh.position.set(-6.5, 0, 1);
+blueMesh.position.set(-6.5, 0, 1);
+blueStreakF.position.set(0, -24, -12)
+blueStreakF.scale.set(3, 3, 3)
+shardMesh.position.set(0, -24, -8)
+shardMesh.scale.set(2, 2, 2)
+shardMesh2.position.set(0, -64, -8)
+shardMesh2.scale.set(2, 2, 2)
 
 //adding objects to the scene
 
 /*scene.add(particlesMesh)*/
-//scene.add(bloodMesh)
+scene.add(bloodMesh)
 //scene.add(secondBloodMesh)
 
 scene.add(clusterMesh)
@@ -162,105 +165,99 @@ var mtlLoader = new THREE.MTLLoader();
     })
 })*/
 
-var ship_material = new THREE.MeshPhongMaterial( { 
+var ship_material = new THREE.MeshPhongMaterial({
     color: 'rgb(79,19,9)',
-    emissive:'rgb(79,19,9)',
-    specular:'orange',
-    opacity: 1
- } );
+    emissive: 'rgb(79,19,9)',
+    specular: 'orange',
+    shininess: 50,
+    reflectivity: 1,
+    transparent: true,
+    opacity: 0.4
+});
 var newloader = new THREE.OBJLoader();
-newloader.load( 'lastpane.obj',
-    function( object ){
-        object.traverse( function( child ) {
-            if ( child instanceof THREE.Mesh ) {
+newloader.load('lastpane.obj',
+    function (object) {
+        object.traverse(function (child) {
+            if (child instanceof THREE.Mesh) {
                 child.material = ship_material;
             }
-        } );
-        scene.add( object );
+        });
+        scene.add(object);
         ourObj2 = object;
 
         //object.children[0].name
         //console.log(object);
         object.position.z -= 10;
         object.rotation.x = 0.5;
-        object.rotation.y = 70;
+        object.rotation.y = 69.8;
         object.position.y = -125;
         object.position.x = 4;
-        
+
     },
-    function( xhr ){
-        console.log( (xhr.loaded / xhr.total * 100) + "% loaded")
+    function (xhr) {
+        console.log((xhr.loaded / xhr.total * 100) + "% loaded")
     },
-    function( err ){
-        console.error( "Error loading 'ship.obj'")
+    function (err) {
+        console.error("Error loading 'ship.obj'")
     }
 );
 
-var ship_material = new THREE.MeshPhongMaterial( { 
-    color: 'rgb(79,19,9)',
-    emissive:'rgb(79,19,9)',
-    specular:'orange',
-    shininess: 50,
-    reflectivity: 1,
-    transparent: true,
-    opacity: 0.5
- } );
 
- var shards_material = new THREE.MeshPhongMaterial({
+
+var shards_material = new THREE.MeshPhongMaterial({
     color: 'rgb(79,19,9)',
-    emissive:'rgb(79,19,9)',
-    specular:'orange',
+    specular: 'orange',
     shininess: 50,
     reflectivity: 1,
     transparent: true,
     opacity: 0.3
- })
+})
 
- var redblue_material = new THREE.MeshPhongMaterial({
+var redblue_material = new THREE.MeshPhongMaterial({
     color: 'rgb(79,19,9)',
-    emissive:'rgb(79,19,9)',
-    specular:'orange',
+    emissive: 'rgb(79,19,9)',
+    specular: 'orange',
     shininess: 50,
     reflectivity: 1,
     transparent: true,
     opacity: 0.5
- })
+})
 
-newloader.load( 'lastpane.obj',
-    function( object ){
-        object.traverse( function( child ) {
-            if ( child instanceof THREE.Mesh ) {
+newloader.load('lastpane.obj',
+    function (object) {
+        object.traverse(function (child) {
+            if (child instanceof THREE.Mesh) {
                 child.material = ship_material;
             }
-        } );
-        scene.add( object );
+        });
+        scene.add(object);
         ourObj1 = object;
 
         //object.children[0].name
         //console.log(object);
         object.position.z -= 10;
         object.rotation.x = 0.5;
-        object.rotation.y = 70;
+        object.rotation.y = 69.8;
         object.position.y = -53;
         object.position.x = 4;
     },
-    function( xhr ){
-        console.log( (xhr.loaded / xhr.total * 100) + "% loaded")
+    function (xhr) {
+        console.log((xhr.loaded / xhr.total * 100) + "% loaded")
     },
-    function( err ){
-        console.error( "Error loading 'ship.obj'")
+    function (err) {
+        console.error("Error loading 'ship.obj'")
     }
 );
-newloader.load( 'Final Shape/Final.obj',
-    function( object ){
-        object.traverse( function( child ) {
-            if ( child instanceof THREE.Mesh ) {
+newloader.load('Final Shape/Final.obj',
+    function (object) {
+        object.traverse(function (child) {
+            if (child instanceof THREE.Mesh) {
                 child.material = redblue_material;
             }
-        } );
-        scene.add( object );
+        });
+        scene.add(object);
         ourObjc1 = object;
-        console.log(object)
+
         //object.children[0].name
         object.position.z -= 6;
         object.position.y = -24;
@@ -268,25 +265,25 @@ newloader.load( 'Final Shape/Final.obj',
         object.rotation.y = 11;
         object.rotation.x = 11;
         object.rotation.z = 0.5;
-        object.scale.set(3,3,3)
+        object.scale.set(3, 3, 3)
     },
-    function( xhr ){
-        console.log( (xhr.loaded / xhr.total * 100) + "% loaded")
+    function (xhr) {
+        console.log((xhr.loaded / xhr.total * 100) + "% loaded")
     },
-    function( err ){
-        console.error( "Error loading 'ship.obj'")
+    function (err) {
+        console.error("Error loading 'ship.obj'")
     }
 );
-newloader.load( 'Final Shape/Final.obj',
-    function( object ){
-        object.traverse( function( child ) {
-            if ( child instanceof THREE.Mesh ) {
+newloader.load('Final Shape/Final.obj',
+    function (object) {
+        object.traverse(function (child) {
+            if (child instanceof THREE.Mesh) {
                 child.material = redblue_material;
             }
-        } );
-        scene.add( object );
+        });
+        scene.add(object);
         ourObjc2 = object;
-        console.log(object)
+
         //object.children[0].name
         object.position.z -= 6;
         object.position.y = -64;
@@ -294,13 +291,13 @@ newloader.load( 'Final Shape/Final.obj',
         object.rotation.y = 11;
         object.rotation.x = 11;
         object.rotation.z = 0.5;
-        object.scale.set(3,3,3)
+        object.scale.set(3, 3, 3)
     },
-    function( xhr ){
-        console.log( (xhr.loaded / xhr.total * 100) + "% loaded")
+    function (xhr) {
+        console.log((xhr.loaded / xhr.total * 100) + "% loaded")
     },
-    function( err ){
-        console.error( "Error loading 'ship.obj'")
+    function (err) {
+        console.error("Error loading 'ship.obj'")
     }
 );
 
@@ -311,12 +308,12 @@ newloader.load( 'Final Shape/Final.obj',
 
 //initialization of lights
 
-const shard1L1 = new THREE.PointLight('blue', 30, 20)
-shard1L1.position.set(6,-30, -4)
+const shard1L1 = new THREE.PointLight('blue', 40, 20)
+shard1L1.position.set(6, -30, -4)
 scene.add(shard1L1);
 
 const shard2L1 = new THREE.PointLight('blue', 30, 20)
-shard2L1.position.set(7,-70, -4)
+shard2L1.position.set(7, -70, -4)
 scene.add(shard2L1);
 
 
@@ -365,62 +362,62 @@ var fourthLight = new THREE.PointLight( 0x340E07, 1, 1000) //bottom left
         scene.add(fourthLight);*/
 
 
-      /*  const sphereSize = 1;
-        const pointLightHelper = new THREE.PointLightHelper(light, sphereSize);
-        scene.add(pointLightHelper);  
-        
-        const secondHelper = new THREE.PointLightHelper(secondLight, sphereSize);
-        scene.add(secondHelper);
+/*  const sphereSize = 1;
+  const pointLightHelper = new THREE.PointLightHelper(light, sphereSize);
+  scene.add(pointLightHelper);  
+  
+  const secondHelper = new THREE.PointLightHelper(secondLight, sphereSize);
+  scene.add(secondHelper);
 
-        const thirdHelper = new THREE.PointLightHelper(thirdLight, sphereSize);
-        scene.add(thirdHelper);
+  const thirdHelper = new THREE.PointLightHelper(thirdLight, sphereSize);
+  scene.add(thirdHelper);
 
-        const fourthHelper = new THREE.PointLightHelper(fourthLight, sphereSize);
-        scene.add(fourthHelper);*/
+  const fourthHelper = new THREE.PointLightHelper(fourthLight, sphereSize);
+  scene.add(fourthHelper);*/
 
 
-     /*   var newlight = new THREE.PointLight( 0x340E07, 1, 1000)   //top left
-        newlight.position.set(-20 ,-41,-10);
-        scene.add(newlight);
+/*   var newlight = new THREE.PointLight( 0x340E07, 1, 1000)   //top left
+   newlight.position.set(-20 ,-41,-10);
+   scene.add(newlight);
 
 
 
 var thirdnewLight = new THREE.PointLight( 0x340E07, 1, 1000)  //top right
-        thirdnewLight.position.set(10 ,-41,-10);
-        scene.add(thirdnewLight);
+   thirdnewLight.position.set(10 ,-41,-10);
+   scene.add(thirdnewLight);
 
 var fourthnewLight = new THREE.PointLight(0xe6e91b, 1, 1000) //bottom left
-        fourthnewLight.position.set(-20 ,-56,-10);
-        scene.add(fourthnewLight);*/
+   fourthnewLight.position.set(-20 ,-56,-10);
+   scene.add(fourthnewLight);*/
 
 
-        //(1,-32,-5) light falling from top
-        //(8,-58,-9) light falling from right
-        //(-10,-60,-7) light falling from left bottom
+//(1,-32,-5) light falling from top
+//(8,-58,-9) light falling from right
+//(-10,-60,-7) light falling from left bottom
 
- 
 
-     /*  const newsphereSize = 1;
-        const newpointLightHelper = new THREE.PointLightHelper(newlight, newsphereSize);
-        scene.add(newpointLightHelper);  
-        
-        const newsecondHelper = new THREE.PointLightHelper(secondnewLight, newsphereSize);
-        scene.add(newsecondHelper);
 
-        const newthirdHelper = new THREE.PointLightHelper(thirdnewLight, newsphereSize);
-        scene.add(newthirdHelper);
+/*  const newsphereSize = 1;
+   const newpointLightHelper = new THREE.PointLightHelper(newlight, newsphereSize);
+   scene.add(newpointLightHelper);  
+   
+   const newsecondHelper = new THREE.PointLightHelper(secondnewLight, newsphereSize);
+   scene.add(newsecondHelper);
 
-        const newfourthHelper = new THREE.PointLightHelper(fourthnewLight, newsphereSize);
-        scene.add(newfourthHelper);*/
- 
-       
+   const newthirdHelper = new THREE.PointLightHelper(thirdnewLight, newsphereSize);
+   scene.add(newthirdHelper);
+
+   const newfourthHelper = new THREE.PointLightHelper(fourthnewLight, newsphereSize);
+   scene.add(newfourthHelper);*/
+
+
 
 /*var light = new THREE.PointLight( 0x03FE03, 40, 1000)
         light.position.set(-6 ,-51,23);
         scene.add(light);*/
 
 const ambientLight = new THREE.AmbientLight(0xffffff, 2, 100);
-scene.add(ambientLight);      
+scene.add(ambientLight);
 
 
 /**
@@ -489,7 +486,7 @@ var lastScrollTop = 0;
 
 //animations on scrolling
 
-function moveCamera() {
+window.addEventListener("scroll", () => {
 
     const t = document.body.getBoundingClientRect().top;
     camera.position.y = t * 0.03;
@@ -498,20 +495,122 @@ function moveCamera() {
     blueMesh.position.y = camera.position.y
     rightCMesh.position.y = camera.position.y
     rightblueMesh.position.y = camera.position.y
+    console.log(t);
 
-  /*  var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
-    if (st > lastScrollTop){
-       ourObj1.rotation.y += 0.05
-       ourObj2.rotation.y += 0.05
+
+
+
+    var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+
+
+    if (st > lastScrollTop) {
+        //downward scroll  
+
+        if (t > -250) {
+            //reset all original scales and rotations
+            console.log('reset')
+            ourObjc1.scale.set(3, 3, 3)
+            ourObjc2.scale.set(3, 3, 3)
+            ourObj1.rotation.set(0.5, 69.8, 0)
+            ourObj2.rotation.set(0.5, 69.8, 0)
+            ourObj1.children[0].material.opacity = 0.4
+            ourObj2.children[0].material.opacity = 0.4
+        }
+        else {
+
+            if (t < -500 && t > -1100) { //first shard scaling increment
+                ourObjc1.scale.x += (0.035 + t / 100000)
+                ourObjc1.scale.y += (0.035 + t / 100000)
+                ourObjc1.scale.z += (0.035 + t / 100000)
+            }
+
+            if (t < -1250 && t > -1850) { // first pane rotation anticlock
+                ourObj1.rotation.y += (0.035 + t / 100000)
+                ourObj1.children[0].material.opacity -= 0.008
+
+            }
+
+            if (t < -1900 && t > -2500) {  //second shard scaling increment
+
+                ourObjc2.scale.x += (0.05 + t / 100000)
+                ourObjc2.scale.y += (0.05 + t / 100000)
+                ourObjc2.scale.z += (0.05 + t / 100000)
+            }
+            if (t < -3600 && t > -4200) {  //second pane rotation anticlock
+
+                ourObj2.rotation.y += 0.035
+                ourObj2.children[0].material.opacity -= 0.005
+            }
+
+        }
+
+
+
+
+        /* ourObj1.rotation.y += 0.05
+         ourObj2.rotation.y += 0.05
+         ourObj1.children[0].material.opacity -= 0.01;*/
     } else {
-       ourObj1.rotation.y -= 0.05
-       ourObj2.rotation.y -= 0.05
+        //upward scroll
+
+        if (t > -250) {
+            //reset all original scales and rotations
+            console.log('reset')
+            ourObjc1.scale.set(3, 3, 3)
+            ourObjc2.scale.set(3, 3, 3)
+            ourObj1.rotation.set(0.5, 70, 0)
+            ourObj2.rotation.set(0.5, 70, 0)
+            ourObj1.children[0].material.opacity = 0.4
+            ourObj2.children[0].material.opacity = 0.4
+        }
+        else {
+
+            if (t > -1100 && t < -500) {   //first shard scalling decrement
+                ourObjc1.scale.x -= (0.035 + t / 100000)
+                ourObjc1.scale.y -= (0.035 + t / 100000)
+                ourObjc1.scale.z -= (0.035 + t / 100000)
+            }
+
+            if (t > -1850 && t < -1250) { // first pane rotation clock
+                ourObj1.rotation.y -= (0.035 + t / 100000)
+                ourObj1.children[0].material.opacity += 0.008
+            }
+
+            if (t > -2500 && t < -1900) {   //second shard scalling decrement
+                ourObjc2.scale.x -= (0.05 + t / 100000)
+                ourObjc2.scale.y -= (0.05 + t / 100000)
+                ourObjc2.scale.z -= (0.05 + t / 100000)
+            }
+            if (t > -4200 && t < -3600) {   //second pane rotation clock
+                ourObj2.rotation.y -= 0.05
+                ourObj2.children[0].material.opacity += 0.005
+            }
+        }
+
+
+        /* ourObj1.rotation.y -= 0.05
+         ourObj2.rotation.y -= 0.05
+         ourObj1.children[0].material.opacity += 0.01;*/
     }
     lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling*/
 
-}
+})
 
-document.body.onscroll = moveCamera
+/*let oldValue = 0;
+
+window.addEventListener('scroll' , function(e){
+
+var newValue = window.pageYOffset;
+
+if(oldValue - newValue < 0){
+    mixer.update( (newValue - oldValue) / 250 );
+} 
+else if(oldValue - newValue > 0){
+   mixer.update(  (newValue - oldValue ) / 250 ) ;
+}
+oldValue = newValue;
+});*/
+
 
 //animation per time tick
 
@@ -522,24 +621,32 @@ const tick = () => {
 
     // Update objects
     particlesMesh.rotation.y += -.1 * elapsedTime
-    bloodMesh.rotation.x += -.1 * elapsedTime
+    //bloodMesh.rotation.x += -.1 * elapsedTime
     secondBloodMesh.rotation.y = -.5 * elapsedTime
-    clusterMesh.rotation.x = -.1*elapsedTime
+    clusterMesh.rotation.x = -.1 * elapsedTime
     blueMesh.rotation.x = -.1 * elapsedTime
     blueStreakF.rotation.y = -.1 * elapsedTime
-    shardMesh.rotation.x += -.1*elapsedTime
-    shardMesh2.rotation.x += -.1*elapsedTime
-    
-    
+    shardMesh.rotation.x += -.1 * elapsedTime
+    shardMesh2.rotation.x += -.1 * elapsedTime
+    //bloodMesh.rotation.x += -.5*elapsedTime
 
-    
-    
+
+
+    /* if(bloodMesh.position.y > -38) {
+         bloodMesh.position.y -= 0.01
+     }
+ 
+     else if (bloodMesh.position.y < -50 && bloodMesh.position.y < -38) {
+         bloodMesh.position.y += 0.01
+     }*/
+
+
     if (mouseX > 0) {
         particlesMesh.rotation.x -= -mouseY * (elapsedTime * 0.0003)
-        particlesMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)    
-      //  bloodMesh.rotation.x -= -mouseY * (elapsedTime * 0.0003)   
-      //  bloodMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)
-        secondBloodMesh.rotation.x -= -mouseY * (elapsedTime * 0.0003)   
+        particlesMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)
+        //  bloodMesh.rotation.x -= -mouseY * (elapsedTime * 0.0003)   
+        //  bloodMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)
+        secondBloodMesh.rotation.x -= -mouseY * (elapsedTime * 0.0003)
         secondBloodMesh.rotation.y -= -mouseX * (elapsedTime * 0.0003)
         clusterMesh.rotation.x -= -mouseY * (elapsedTime * 0.0001)
         clusterMesh.rotation.y -= -mouseX * (elapsedTime * 0.0001)
@@ -550,11 +657,11 @@ const tick = () => {
         rightblueMesh.rotation.x -= -mouseY * (elapsedTime * 0.0001)
         rightblueMesh.rotation.y -= -mouseX * (elapsedTime * 0.0001)
         shardMesh.rotation.x -= -mouseY * (elapsedTime * 0.0001)
-       
-        
-        
+
+
+
     }
-    
+
 
     // Update Orbital Controls
     // controls.update()
@@ -571,25 +678,32 @@ tick()
 
 //animation for custom model
 
-var render = function() {
+let currentTimeline = window.pageYOffset / 3000
+let aimTimeline = window.pageYOffset / 3000
+
+var render = function () {
     requestAnimationFrame(render);
 
     const elapsedTime = clock.getDelta()
 
-  // ourObjc1.rotation.y += 0.005;
-    
-    // Rotate the objects indefinitely
-   // ourObj1.children[0].material.opacity -= 0.001;
+    ourObj1.rotation.z += 0.05;
 
-  // ourObjc1.rotation.x += 0.01;
 
-    
-   // light.position.y +=.03;
+    /* currentTimeline += (aimTimeline - currentTimeline) * 0.03;
+ 
+     const rx= currentTimeline * -0.5 + 0.5
+     const ry = (currentTimeline * 0.9 + 0.1) * Math.PI * 2
+ 
+     ourObj1.rotation.set(rx,ry,0)*/
+    renderer.render(scene, camera)
 
-    renderer.render(scene, camera);
 }
 
-render();
+//render();
+
+window.addEventListener('scroll', () => {
+    aimTimeline = window.pageYOffset / 3000
+})
 
 
 

@@ -790,7 +790,7 @@ transform: matrix(-1, 0, 0, 1, 0, 0);
 
 .vector7{
   position: absolute;
-width: 176.54px;
+width: 106.54px;
 height: 0px;
 left: 0px;
 top: 1135px;
@@ -800,7 +800,7 @@ border: 1px solid #FFFFFF;
 
 .vector8{
   position: absolute;
-width: 267px;
+width: 187px;
 height: 0px;
 left: 0px;
 top: 1165.5px;
@@ -810,7 +810,7 @@ border: 1px solid #EA533C;
 
 .vector9 {
   position: absolute;
-width: 90.46px;
+width: 50.46px;
 height: 0px;
 left: 0px;
 top: 1194.5px;
@@ -853,7 +853,7 @@ transform: matrix(-1, 0, 0, 1, 0, 0);
 
 .vector13{
   position: absolute;
-width: 377.54px;
+width: 107.54px;
 height: 0px;
 left: 0px;
 top: 1493px;
@@ -863,7 +863,7 @@ border: 1px solid #FFFFFF;
 
 .vector14{
   position: absolute;
-width: 571px;
+width: 171px;
 height: 0px;
 left: 0px;
 top: 1523.5px;
@@ -872,8 +872,8 @@ border: 1px solid #EA533C;
 }
 
 .vector15{
-  position: absolute;
-width: 193.46px;
+position: absolute;
+width: 93.46px;
 height: 0px;
 left: 0px;
 top: 1552.5px;
@@ -1099,3 +1099,74 @@ top: 5426.5px;
 
 border: 1px solid #FFFFFF;
 }
+
+.scroll-div1-1 {
+  left: 205px;
+  position: absolute;
+  top: 1550px;
+}
+
+.scroll-div1-2 {
+  left: 214px;
+ 
+  position: absolute;
+  
+  top: 1560px;
+
+}
+.scroll-div1-3 {
+  position: absolute;
+  top: 1535px;
+  color: #FFFFFF;
+  left: 245px;
+
+}
+.scroll-div2-1 {
+  left: 205px;
+  position: absolute;
+  top: 2795px;
+}
+
+.scroll-div2-2 {
+  left: 214px;
+ 
+  position: absolute;
+  
+  top: 2805px;
+
+}
+.scroll-div2-3 {
+  position: absolute;
+  top: 2780px;
+  color: #FFFFFF;
+  left: 245px;
+
+}
+.scroll-div3-1 {
+ 
+  position: absolute;
+  top: 4250px;
+  left: 205px; 
+}
+
+.scroll-div3-2 {
+  
+ 
+  position: absolute;
+  top: 4260px;
+  left: 214px;
+  
+  
+
+}
+.scroll-div3-3 {
+  position: absolute;
+  top:4235px;
+  color: #FFFFFF;
+  left: 245px;
+ 
+
+}
+
+
+
